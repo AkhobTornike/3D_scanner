@@ -1,0 +1,75 @@
+# Markdown ფაილები
+*.md
+
+# Node modules
+node_modules/
+
+# React Native
+.expo/
+.expo-shared/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
+
+# Android/IntelliJ
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+
+# iOS
+ios/Pods/
+ios/**/*.xcworkspace
+!ios/**/*.xcworkspace/contents.xcworkspacedata
+ios/**/*.pbxuser
+ios/**/*.mode1v3
+ios/**/*.mode2v3
+ios/**/*.perspectivev3
+ios/**/*.xcuserstate
+ios/**/*.xcscmblueprint
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# VSCode
+.vscode/
+.history/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+
+# 3D Models and Videos (დროებითი ფაილები)
+temp/
+videos/
+frames/
+models/tmp/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Bundle artifact
+*.jsbundle
+
+# CocoaPods
+ios/Pods/
