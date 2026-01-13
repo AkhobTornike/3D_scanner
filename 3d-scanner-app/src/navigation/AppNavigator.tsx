@@ -3,16 +3,11 @@ import { View, Text, StyleSheet } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { COLORS } from '../constants';
 import { NavigationContainer } from '@react-navigation/native';
+import { ScanScreen } from '../screens/ScanScreen';
 
 const HomeScreen = () => (
     <View style={styles.placeholder}>
         <Text style={styles.text}>Home Screen</Text>
-    </View>
-);
-
-const ScanScreen = () => (
-    <View style={styles.placeholder}>
-        <Text style={styles.text}>Scan Screen</Text>
     </View>
 );
 
