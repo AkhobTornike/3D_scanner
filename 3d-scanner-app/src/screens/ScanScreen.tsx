@@ -7,6 +7,7 @@ import { Button } from '../components/Button';
 import { ProgressBar } from '../components/ProgressBar';
 import { COLORS, SCAN_CONFIG } from '../constants';
 import { CameraControls } from '../components/CameraControls';
+import { ScanGuide } from '../components/ScanGuide';
 
 interface Props {
     navigation: StackNavigation<'Scan'>;
@@ -90,15 +91,11 @@ export const ScanScreen: React.FC<Props> = ({ navigation }) => {
                         )}
                     </View>
 
-                    {/* Center Guide */}
-                    <View style={styles.centerGuide}>
-                        <View style={styles.guideCircle} />
-                        <Text style={styles.guideText}>
-                            {isRecording
-                              ? 'ატრიალეთ ობიექტი 360°'
-                              : 'მოათავსეთ ობიექტი ცენტრში'}
-                        </Text>
-                    </View>
+                    {/* Scan Guide with Progress */}
+                    <ScanGuide
+                      isRecording={isRecording}
+                      progress={progress}
+                    />                    
 
                     {/* Bottom Controls */}
                     <View style={styles.bottomControls}>
@@ -175,29 +172,6 @@ const styles = StyleSheet.create({
         color: COLORS.text,
         fontSize: 14,
         fontWeight: 'bold',
-    },
-    centerGuide: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    guideCircle: {
-        width: 250,
-        height: 250,
-        borderRadius: 125,
-        borderWidth: 3,
-        borderColor: COLORS.primary,
-        borderStyle: 'dashed',
-        opacity: 0.6,
-    },
-    guideText: {
-        color: COLORS.text,
-        fontSize: 16,
-        marginTop: 20,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        borderRadius: 20,
     },
     bottomControls: {
         paddingBottom: 40,
