@@ -6,16 +6,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ScanScreen } from '../screens/ScanScreen';
 import { ProcessingScreen } from '../screens/ProcessingScreen';
 import { RootStackParamList } from './types';
+import { PreviewScreen } from '../screens/PreviewScreen';
 
 const HomeScreen = () => (
     <View style={styles.placeholder}>
         <Text style={styles.text}>Home Screen</Text>
-    </View>
-);
-
-const PreviewScreen = () => (
-    <View style={styles.placeholder}>
-        <Text style={styles.text}>Preview Screen</Text>
     </View>
 );
 
