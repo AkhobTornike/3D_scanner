@@ -13,18 +13,36 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "ჩვენ გვჭირდება კამერა ობიექტის 360° სკანირებისთვის და 3D მოდელის შესაქმნელად",
+        "NSMicrophoneUsageDescription": "ჩვენ გვჭირდება მიკროფონი ვიდეოში აუდიოს ჩასაწერად"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO"
+      ],
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "ობიექტის სკანირებისთვის გვჭირდება კამერა",
+          "microphonePermission": "ვიდეოში აუდიოს ჩასაწერად გვჭირდება მიკროფონი",
+          "recordAudioAndroid": true
+        }
+      ]
+    ]
   }
 }
