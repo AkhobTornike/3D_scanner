@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { CameraView } from 'expo-camera';
 import { StackNavigation } from '../navigation/types';
 import { useCamera } from '../hooks';
 import { Button } from '../components/Button';
 import { ProgressBar } from '../components/ProgressBar';
 import { COLORS, SCAN_CONFIG } from '../constants';
+import { CameraControls } from '../components/CameraControls';
 
 interface Props {
     navigation: StackNavigation<'Scan'>;
@@ -111,30 +112,12 @@ export const ScanScreen: React.FC<Props> = ({ navigation }) => {
                             </View>
                         )}
 
-                        <View style={styles.controlsRow}>
-                            <TouchableOpacity
-                              style={styles.iconButton}
-                              onPress={toggleCameraType}
-                              disabled={isRecording}
-                            >
-                                <Text style={styles.iconText}>🔄</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                              style={[
-                                styles.recordButton,
-                                isRecording && styles.recordButtonActive,
-                              ]}
-                              onPress={handleRecordPress}
-                            >
-                                <View style={[
-                                    styles.recordButtonInner,
-                                    isRecording && styles.recordButtonInnerActive,
-                                ]} />
-                            </TouchableOpacity>
-
-                            <View style={styles.iconButton} />
-                        </View>
+                        <CameraControls
+                          isRecording={isRecording}
+                          onRecordPress={handleRecordPress}
+                          onFlipCamera={toggleCameraType}
+                          disableFlip={isRecording}
+                        />
                     </View>
                 </View>
             </CameraView>
@@ -222,45 +205,5 @@ const styles = StyleSheet.create({
     },
     progressContainer: {
         marginBottom: 20,
-    },
-    controlsRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    iconButton: {
-        width: 50,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        borderRadius: 25,
-    },
-    iconText: {
-        fontSize: 24,
-    },
-    recordButton: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        backgroundColor: COLORS.text,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 4,
-        borderColor: COLORS.primary,
-    },
-    recordButtonActive: {
-        borderColor: COLORS.error,
-    },
-    recordButtonInner: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        backgroundColor: COLORS.error,
-    },
-    recordButtonInnerActive: {
-        width: 40,
-        height: 40,
-        borderRadius: 8,
     },
 });
