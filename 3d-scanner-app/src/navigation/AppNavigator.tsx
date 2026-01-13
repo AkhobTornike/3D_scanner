@@ -4,16 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { COLORS } from '../constants';
 import { NavigationContainer } from '@react-navigation/native';
 import { ScanScreen } from '../screens/ScanScreen';
+import { ProcessingScreen } from '../screens/ProcessingScreen';
+import { RootStackParamList } from './types';
 
 const HomeScreen = () => (
     <View style={styles.placeholder}>
         <Text style={styles.text}>Home Screen</Text>
-    </View>
-);
-
-const ProcessingScreen = () => (
-    <View style={styles.placeholder}>
-        <Text style={styles.text}>Processing Screen</Text>
     </View>
 );
 
@@ -29,7 +25,7 @@ const GalleryScreen = () => (
     </View>
 );
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const AppNavigator: React.FC = () => {
     return (
