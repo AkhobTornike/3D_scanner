@@ -7,16 +7,11 @@ import { ScanScreen } from '../screens/ScanScreen';
 import { ProcessingScreen } from '../screens/ProcessingScreen';
 import { RootStackParamList } from './types';
 import { PreviewScreen } from '../screens/PreviewScreen';
+import { GalleryScreen } from '../screens/GalleryScreen';
 
 const HomeScreen = () => (
     <View style={styles.placeholder}>
         <Text style={styles.text}>Home Screen</Text>
-    </View>
-);
-
-const GalleryScreen = () => (
-    <View style={styles.placeholder}>
-        <Text style={styles.text}>Gallery Screen</Text>
     </View>
 );
 
