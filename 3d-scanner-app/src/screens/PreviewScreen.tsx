@@ -3,8 +3,10 @@ import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import { ScreenProps } from "../navigation/types";
 import { COLORS } from '../constants';
 import { Button } from '../components/Button';
-import { Model3D } from '../types/model.types';
+import { Model3D, Model3DFormat } from '../types/model.types';
 import { createModel } from '../services/reconstructionService';
+import { shareModel, EXPORT_FORMATS, saveToDevice } from '../services/exportService';
+import { saveModel, loadModel as loadModelFromStorage } from '../services/storageService';
 
 type Props = ScreenProps<'Preview'>;
 
@@ -19,6 +21,14 @@ export const PreviewScreen = ({ route, navigation }: Props) => {
 
     const loadModel = async () => {
         try {
+            try {
+                const savedModel = await loadModelFromStorage(modelId);
+                setModel(savedModel);
+                setLoading(false);
+                return;
+            } catch {
+                // if not in storage;
+            }
             // TODO: ჩატვირთოთ model storage-დან (TASK-8)
             const mockModel: Model3D = {
                 id: modelId,
@@ -48,12 +58,41 @@ export const PreviewScreen = ({ route, navigation }: Props) => {
         }
     };
 
-    const handleSave = () => {
-        Alert.alert('შენახვა', 'მოდელი შენახულია! (MOCK)');
+    const handleExport = () => {
+        Alert.alert(
+            'ექსპორტი ფორმატი',
+            'აირჩიეთ ფორმატი:',
+            [
+                ...EXPORT_FORMATS.map((format) => ({
+                    text: `${format.label} - ${format.description}`,
+                    onPress: () => exportWithFormat(format.format),
+                })),
+                { text: 'გაუქმება', style: 'cancel' },
+            ]
+        );
     };
 
-    const handleExport = () => {
-        Alert.alert('ექსპორტი', 'მოდელის ექსპორტი (MOCK)\n\nფორმატი: GLB');
+    const exportWithFormat = async (format: Model3DFormat) => {
+        if (!model) return;
+
+        try {
+            await shareModel(model, format);
+        } catch (err) {
+            console.error('Export error:', err);
+            Alert.alert('შეცდომა', 'ექსპორტი ვერ მოხერხდა');
+        }
+    };
+
+    const handleSave = async () => {
+        if (!model) return;
+
+        try {
+            await saveModel(model);
+            Alert.alert('წარმატება', 'მოდელი შენახულია!');
+        } catch (err) {
+            console.error('Save error:', err);
+            Alert.alert('შეცდომა', 'შენახვა ვერ მოხერხდა');
+        }
     };
 
     const handleDelete = () => {
